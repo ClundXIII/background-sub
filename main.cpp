@@ -18,7 +18,7 @@ int main(int argc, char **argv){
         argList.push_back(argv[i]);
     }
 
-    if (argList.size() != 8){
+    if (argList.size() != 9){
         cout << "Expected 7 args:" << endl
              << "1) filename" << endl
              << "2) last File number" << endl
@@ -26,7 +26,8 @@ int main(int argc, char **argv){
              << "4) background filename" << endl
              << "5) sample spec file" << endl
              << "6) spec intesity of back" << endl
-             << "7) integration check filename" << endl;
+             << "7) integration check filename" << endl
+             << "8) Background multiplication factor" << endl;
         return -1;
     }
 
@@ -61,6 +62,7 @@ int main(int argc, char **argv){
 
     string::size_type sz;
     real back_intensity = stod(argList.at(6), &sz);
+    real back_mul = stod(argList.at(8), &sz);
 
     vector<real> spec_int;
 
@@ -129,7 +131,7 @@ int main(int argc, char **argv){
         	streamline >> val2;
 
         	//real val3 = back_intensity * val2 - background.at(line_number) * spec_int.at(i);
-			real val3 = val2 * (spec_int.at(0)/spec_int.at(i)) - background.at(line_number) * (spec_int.at(0)/(back_intensity*4.d));
+			real val3 = /*spec_int.at(0) * */( val2 / spec_int.at(i) - back_mul * background.at(line_number) / back_intensity);
 
         	/*cout << "spec at 0: " << spec_int.at(0) << ", spec int at t:" << spec_int.at(i) << "back at line: " << background.at(line_number) << ", back_intensity: " << back_intensity << endl;
 
