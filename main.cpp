@@ -131,7 +131,7 @@ int main(int argc, char **argv){
         	streamline >> val2;
 
         	//real val3 = back_intensity * val2 - background.at(line_number) * spec_int.at(i);
-			real val3 = /*spec_int.at(0) * */( val2 / spec_int.at(i) - back_mul * background.at(line_number) / back_intensity);
+			real val3 = /*spec_int.at(0) * */( (val2 / spec_int.at(i)) - ( (back_mul * background.at(line_number)) / back_intensity ) );
 
         	/*cout << "spec at 0: " << spec_int.at(0) << ", spec int at t:" << spec_int.at(i) << "back at line: " << background.at(line_number) << ", back_intensity: " << back_intensity << endl;
 
@@ -140,11 +140,13 @@ int main(int argc, char **argv){
         	int oadfjwe;
         	cin >> oadfjwe;*/
 
-        	out_f << val1 << " " << val3 << " " << val2 << endl;
+        	out_f << val1 << " " << val3 << " " << (val2/ spec_int.at(i)) << endl;
         	out_f.flush();
 
         	sum += val3;
         	sum1 += val2;
+
+            line_number++;
 
         }
     	if ((i % 50) == 0)
