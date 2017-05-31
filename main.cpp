@@ -19,7 +19,7 @@ int main(int argc, char **argv){
     }
 
     if (argList.size() != 9){
-        cout << "Expected 7 args:" << endl
+        cout << "Expected 8 args:" << endl
              << "1) filename" << endl
              << "2) last File number" << endl
              << "3) destination filename" << endl
@@ -109,7 +109,7 @@ int main(int argc, char **argv){
         in_f.open(in_filename.str());
         out_f.open(out_filename.str());
 
-        real sum = 0, sum1 = 0;
+        real sum = 0, sum1 = 0, sum2=0;
 
 		//cout << "ration measurement: " << spec_int.at(0)/spec_int.at(i) << " ration background: " << spec_int.at(0)/back_intensity << endl;
         /*int oadfjwe;
@@ -145,6 +145,7 @@ int main(int argc, char **argv){
 
         	sum += val3;
         	sum1 += val2;
+            sum2 += (val2 / spec_int.at(i));
 
             line_number++;
 
@@ -153,7 +154,7 @@ int main(int argc, char **argv){
     		cout << "."; cout.flush();
 
 
-        int_test_file << sum << " " << sum1 << endl;
+        int_test_file << sum << " " << sum1 << " " << sum2 << endl;
 
         in_f.close();
 
